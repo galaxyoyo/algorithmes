@@ -87,15 +87,14 @@
               <configuration>
                 <headerType>gui</headerType>
                 <jar>${project.build.directory}/${project.artifactId}-${project.version}-shaded.jar</jar>
-                <outfile>${project.build.directory}/${project.artifactId}-${project.version}.${BUILD_NUMBER}.exe</outfile>
+                <outfile>${project.build.directory}/${project.artifactId}-${project.version}.exe</outfile>
                 <downloadUrl>http://java.com/download</downloadUrl>
                 <classPath>
-                  <mainClass>galaxyoyo.unknown.client.main.Main</mainClass>
+                  <mainClass>galaxyoyo.algorithmes.main.Main</mainClass>
                   <preCp>anything</preCp>
                 </classPath>
-                <icon>icon.ico</icon>
                 <jre>
-                  <minVersion>1.8.0</minVersion>
+                  <minVersion>1.7.0</minVersion>
                   <jdkPreference>preferJre</jdkPreference>
                 </jre>
                 <versionInfo>
