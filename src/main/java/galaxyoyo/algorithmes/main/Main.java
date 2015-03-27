@@ -10,6 +10,7 @@ public class Main
 	{
 		try
 		{
+			UIManager.put("Tree.paintLines", false);
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}
 		catch (Throwable t)

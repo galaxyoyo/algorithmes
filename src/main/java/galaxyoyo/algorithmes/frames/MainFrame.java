@@ -1,5 +1,8 @@
 package galaxyoyo.algorithmes.frames;
 
+import galaxyoyo.algorithmes.models.CodeTreeCellRenderer;
+import galaxyoyo.algorithmes.models.CodeTreeModel;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -36,10 +39,13 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.text.NumberFormatter;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame
 {
+	private static MainFrame INSTANCE;
+	
 	private JMenuItem mntmNouveau;
 	private JMenuItem mntmOuvrir;
 	private JMenu mnRuecemmentOuverts;
@@ -151,6 +157,7 @@ public class MainFrame extends JFrame
 	public MainFrame()
 	{
 		super ("Algorithmes");
+		INSTANCE = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		contentPane = new JPanel();
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -367,6 +374,9 @@ public class MainFrame extends JFrame
 		
 		codeTree = new JTree();
 		codeTree.setBorder(new LineBorder(new Color(0, 0, 0)));
+		codeTree.setModel(new CodeTreeModel(new DefaultMutableTreeNode()));
+		codeTree.setCellRenderer(new CodeTreeCellRenderer());
+		codeTree.setRootVisible(false);
 		codePanel.add(codeTree, BorderLayout.CENTER);
 		
 		optionsPanel = new JPanel();
@@ -439,6 +449,13 @@ public class MainFrame extends JFrame
 		panel.setLayout(new GridLayout(3, 4, 5, 5));
 		
 		newVarButton = new JButton("D\u00e9clarer nouvelle variable");
+		newVarButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent event)
+			{
+				new NewVarDialog(MainFrame.this);
+			}
+		});
 		newVarButton.setIcon(new ImageIcon(MainFrame.class.getResource("/images/ajouter.png")));
 		panel.add(newVarButton);
 		
@@ -791,5 +808,10 @@ public class MainFrame extends JFrame
 		gbc_btnSupprimer.gridy = 2;
 		panel_4.add(btnSupprimer, gbc_btnSupprimer);
 		setVisible(true);
+	}
+	
+	public static MainFrame getInstance()
+	{
+		return INSTANCE;
 	}
 }
