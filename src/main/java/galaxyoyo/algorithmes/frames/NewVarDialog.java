@@ -189,8 +189,8 @@ public class NewVarDialog extends JDialog
 					case 5 : value = valueTextField.getText(); break;
 					case 6 : value = new Gson().fromJson(valueTextField.getText(), ArrayList.class); break;
 					case 7 : value = new Gson().fromJson(valueTextField.getText(), HashMap.class); break;
-					case 8 : value = new Gson().fromJson(valueTextField.getText(), Class.forName(classTextField.getText()));
-					default : throw new IndexOutOfBoundsException();
+					case 8 : value = new Gson().fromJson(valueTextField.getText(), Class.forName(classTextField.getText())); break;
+					default : throw new IndexOutOfBoundsException("" + typeComboBox.getSelectedIndex());
 					}
 					VarList.getList().add(new Var<Object>(keyTextField.getText(), value));
 					dispose();

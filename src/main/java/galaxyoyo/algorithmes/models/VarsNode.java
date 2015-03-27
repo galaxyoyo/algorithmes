@@ -23,7 +23,7 @@ public class VarsNode extends DefaultMutableTreeNode implements VarListListener
 		this.children = null;
 		for (Var<?> var : VarList.getList().values())
 		{
-			DefaultMutableTreeNode node = new DefaultMutableTreeNode("<html><body><strong style=\"color: red\">" + var.getClazz().getSimpleName().replace("Integer", "Int") + "</strong> <em style=\"color: green\">" + var.getName() + "</em> = <span style=\"color: blue\">" + new Gson().toJson(var.getValue()) + "</span></body></html>");
+			DefaultMutableTreeNode node = new DefaultMutableTreeNode("<html><body><strong style=\"color: red\">" + var.getClazz().getSimpleName().replace("Integer", "Int") + "</strong> <em style=\"color: green\">" + var.getName() + "</em> = <span style=\"color: blue\">" + new Gson().toJson(var.getValue()).replaceAll("\\\\u0027", "\u0027") + "</span></body></html>");
 			node.setAllowsChildren(false);
 			add(node);
 		}
