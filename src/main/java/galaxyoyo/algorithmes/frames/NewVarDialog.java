@@ -168,6 +168,14 @@ public class NewVarDialog extends JDialog
 				Object value;
 				try
 				{
+					if (!keyTextField.getText().matches("[a-zA-Z_0-9]+"))
+					{
+						throw new IllegalArgumentException("Caractère(s) invalide(s) dans le nom de la variable");
+					}
+					if (!keyTextField.getText().substring(0, 1).matches("[a-zA-Z_]"))
+					{
+						throw new IllegalArgumentException("Un nom de variable doît commencer par une lettre ou un underscore");
+					}
 					switch (typeComboBox.getSelectedIndex())
 					{
 					case 0 : value = Integer.parseInt(valueTextField.getText()); break;
@@ -189,7 +197,7 @@ public class NewVarDialog extends JDialog
 				}
 				catch (Throwable t)
 				{
-					JOptionPane.showMessageDialog(NewVarDialog.this, "Oups ! Il y a une erreur : '" + t.getMessage() + "'");
+					JOptionPane.showMessageDialog(NewVarDialog.this, "Oups ! Il y a une erreur : " + t.getClass() + " : '" + t.getMessage() + "'");
 					return;
 				}
 			}
