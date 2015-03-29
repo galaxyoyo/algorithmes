@@ -34,7 +34,7 @@ public class CodeTreeModel extends DefaultTreeModel implements VarListListener
 				{
 					e.printStackTrace();
 				}
-				reload();
+				reload(CodeTreeModel.this.root.getChildAt(0));
 			}
 		}).start();
 	}
